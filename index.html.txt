@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>گلخانه هوشمند</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .sensor-box { display: inline-block; padding: 10px; border: 1px solid #ccc; margin: 10px; }
+        .control-box { margin-top: 20px; }
+    </style>
+    <script>
+        async function fetchData() {
+            const response = await fetch("https://your-project.firebaseio.com/sensor.json");
+            const data = await response.json();
+            document.getElementById("soilMoisture").innerText = data.soilMoisture;
+            document.getElementById("temperature").innerText = data.temperature;
+            document.getElementById("humidity").innerText = data.humidity;
+            document.getElementById("lightIntensity").innerText = data.lightIntensity;
+        }
+        setInterval(fetchData, 5000);
+    </script>
+</head>
+<body>
+    <h1>گلخانه هوشمند</h1>
+    <div class="sensor-box">رطوبت خاک: <span id="soilMoisture">0</span></div>
+    <div class="sensor-box">دمای محیط: <span id="temperature">0</span></div>
+    <div class="sensor-box">رطوبت هوا: <span id="humidity">0</span></div>
+    <div class="sensor-box">شدت نور: <span id="lightIntensity">0</span></div>
+</body>
+</html>
